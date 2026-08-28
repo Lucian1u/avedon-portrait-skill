@@ -1,7 +1,7 @@
 <p align="center">
   <img src="evals/visual/source-general-waist.png" alt="输入：腰部以上彩色正面肖像" width="48%">
   &nbsp;
-  <img src="evals/visual/result-ve-04-general-waist.png" alt="结果：白底黑白正式肖像，眼镜、发辮和手的位置未改" width="48%">
+  <img src="evals/visual/result-ve-04-general-waist.png" alt="结果：白底黑白正式肖像，眼镜、发辫和手的位置未改" width="48%">
 </p>
 <p align="center"><sub>左：输入　右：精确路线结果。合成验收图，不是 Avedon 原作，也不是真实用户。</sub></p>
 
@@ -34,7 +34,7 @@ Avedon Portrait Skill 是一个面向 ChatGPT、Codex 和兼容 [Agent Skills](h
 
 ## 为什么做这个项目
 
-把照片丢进「做成 Avedon 风格」的提示词，模型常会把侧脸拓成正脸、把半张脸补全，或另外生成一个长得像的人。画面像样，人已经换了。
+把照片丢进「做成 Avedon 风格」的提示词，模型常会把侧脸扳成正脸、把半张脸补全，或另外生成一个长得像的人。画面像样，人已经换了。
 
 这个项目只解决一件事：在不补看不见的脸的前提下，把单人照片做成有作品依据的正式肖像。
 
