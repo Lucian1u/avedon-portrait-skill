@@ -1,0 +1,71 @@
+# Evaluation Rubric
+
+## Purpose
+
+Evaluate observable behavior, not whether generated wording matches a template.
+
+## Hard gates
+
+A result fails immediately when:
+
+- framing changes outside the declared safe inward-crop matrix;
+- an inward crop changes head view, face visibility, expression category, or visible identity;
+- a hidden face or body region is brought into view;
+- the output contains more than one person;
+- an exact route is claimed when the complete key is not `supported`;
+- visible identity changes materially;
+- clothing, accessories, held objects, or social identity are replaced by corpus-specific sitter styling;
+- the result leaves the controlled-background formal-portrait domain.
+
+## Scores
+
+Use 0–4 for each applicable dimension.
+
+### Structure preservation
+
+- `4`: exact mode preserves the complete key, or crop fallback reaches the declared target while preserving every protected identity axis.
+- `3`: target crop is correct with one noticeable but non-identity-bearing shift.
+- `2`: target crop or one protected axis is ambiguous.
+- `1`: an unauthorized structural axis clearly changed.
+- `0`: hidden identity was invented or the result normalized into an unrelated portrait type.
+
+### Transformation integrity
+
+- `4`: only authorized crop, recentering, background, and tonal changes occur.
+- `3`: one permitted change is slightly over-applied but identity remains intact.
+- `2`: unnecessary information is removed or the target crop is weak.
+- `1`: pose, view, or identity-bearing content changes.
+- `0`: unseen face or anatomy is invented.
+
+### Visible identity preservation
+
+- `4`: all visible identity evidence remains consistent.
+- `3`: recognizable with minor drift.
+- `2`: recognizable but several features drift.
+- `1`: weak resemblance.
+- `0`: different person.
+
+Mark `not_assessable` for facial identity when no face is visible; evaluate silhouette and visible features separately.
+
+### Route fidelity
+
+- `4`: matches every required rule and no negative constraint.
+- `3`: one secondary route cue is weak.
+- `2`: several route cues are generic.
+- `1`: only a superficial black-and-white treatment remains.
+- `0`: contradicts the selected route.
+
+### Shared style fidelity
+
+Score only evidence-backed shared rules. Do not reward unsupported mythology about Avedon.
+
+### Technical integrity
+
+Check anatomy, duplicate features, hands, clothing continuity, edge artifacts, unintended text, halos, background seams, and tonal damage.
+
+## Pass rule
+
+- no hard-gate failure;
+- `structure_preservation = 4` and `transformation_integrity = 4`;
+- every other applicable dimension at least `3`;
+- route and shared-style scores cite the evidence rules used.

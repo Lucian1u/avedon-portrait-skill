@@ -1,0 +1,4 @@
+interface:
+  display_name: "Avedon Portrait"
+  short_description: "自动裁切、去背景并保留身份的 Avedon 式单人肖像"
+  default_prompt: "Use $avedon-portrait to transform this single-person image with safe cropping, background removal, and identity-preserving Avedon portrait treatment."

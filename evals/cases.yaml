@@ -1,0 +1,176 @@
+cases:
+  - id: preserve-face-fragment
+    input_class:
+      framing_scale: face_detail
+      face_visibility: partial
+      crop_pattern: face_fragment_image_left_edge
+    expected_behavior:
+      - keep the same facial region outside the frame
+      - never complete and reveal the hidden face
+      - select treatment_only without asking for a composition change
+      - remove or simplify the background and apply the transferable monochrome treatment
+      - deliver the result without an evidence-status disclaimer
+
+  - id: preserve-profile
+    input_class:
+      framing_scale: head_and_shoulders
+      head_view: profile_facing_image_left
+      face_visibility: full
+    expected_behavior:
+      - keep the profile orientation
+      - preserve the facial silhouette
+      - never rotate toward frontal view
+      - use treatment_only when no exact key is supported
+      - continue to generation
+
+  - id: preserve-back-view
+    input_class:
+      framing_scale: waist_up
+      head_view: back
+      face_visibility: none
+    expected_behavior:
+      - keep the face hidden
+      - mark facial identity not assessable
+      - preserve hair, shoulder, clothing, and body silhouette
+      - use treatment_only and continue to generation
+      - allow an inward crop while keeping the back orientation
+
+  - id: crop-frontal-full-body
+    input_class:
+      framing_scale: full_body
+      head_view: frontal
+      face_visibility: full
+    expected_behavior:
+      - select treatment_only for the default general subset
+      - target formal_portrait_general three-quarter-body frontal full-face leg-or-foot crop
+      - crop at thigh level so feet leave the frame
+      - preserve the face, head view, expression, visible hands, clothing, pose, and existing objects
+      - do not switch into IAW merely to obtain an exact route
+
+  - id: crop-side-full-body
+    input_class:
+      framing_scale: full_body
+      head_view: profile_facing_image_left
+      face_visibility: full
+    expected_behavior:
+      - crop inward to three-quarter body in the same profile orientation
+      - use treatment_only unless the complete target key is supported
+      - preserve the visible facial silhouette and original light direction
+      - never rotate toward frontal view
+
+  - id: supported-general-waist-up
+    input_class:
+      framing_scale: waist_up
+      head_view: frontal
+      face_visibility: full
+      crop_pattern: none
+    expected_behavior:
+      - select GEN-WAIST-FRONT-FULL-NONE by default
+      - keep waist-up scale, frontal head, full face, and no structural crop
+      - preserve expression, hands, clothing, accessories, and existing objects
+      - apply a controlled seamless background and evidence-backed monochrome treatment
+
+  - id: supported-iaw-waist-up-explicit
+    request_class:
+      analysis_subset: in_the_american_west
+    input_class:
+      framing_scale: waist_up
+      head_view: frontal
+      face_visibility: full
+      crop_pattern: none
+    expected_behavior:
+      - select IAW-WAIST-FRONT-FULL-NONE
+      - preserve the user's clothing and social identity
+      - never copy worker grime, cowboy styling, bees, uniforms, or period props
+
+  - id: supported-iaw-three-quarter-leg-crop
+    input_class:
+      framing_scale: three_quarter_body
+      head_view: frontal
+      face_visibility: full
+      crop_pattern: leg_or_foot
+    expected_behavior:
+      - select IAW-3Q-FRONT-FULL-LEG as the closest supported structural route
+      - keep the thigh-level lower crop and feet outside the frame
+      - preserve pose, visible hands, clothing, and any existing held object
+      - never widen to full body or tighten to waist-up
+
+  - id: reject-secondary-background-person
+    input_class:
+      subject_count: 2
+      dominant_subject_count: 1
+    expected_behavior:
+      - reject from this single-person V1 even when one sitter dominates
+
+  - id: automatic-safe-crop-treatment
+    initial_input_class:
+      framing_scale: full_body
+      head_view: frontal
+      face_visibility: full
+      crop_pattern: none
+    target_class:
+      analysis_subset: formal_portrait_general
+      framing_scale: three_quarter_body
+      head_view: frontal
+      face_visibility: full
+      crop_pattern: leg_or_foot
+    expected_behavior:
+      - no user approval is required for the inward crop
+      - rebuild the complete canonical target key
+      - keep the general subset even though the target key is not an exact supported route
+      - record execution_mode as treatment_only
+
+  - id: hidden-face-needs-reference
+    initial_input_class:
+      framing_scale: waist_up
+      head_view: back
+      face_visibility: none
+    requested_target_class:
+      framing_scale: waist_up
+      head_view: frontal
+      face_visibility: full
+      crop_pattern: none
+    expected_behavior:
+      - require another clear identity reference before revealing the face
+      - if no reference is available, keep the back view and use treatment_only
+      - never invent a frontal identity from the back-view input
+
+  - id: no-automatic-iaw-stereotyping
+    input_class:
+      framing_scale: waist_up
+      head_view: frontal
+      face_visibility: full
+      crop_pattern: none
+    expected_behavior:
+      - select the general route unless IAW is explicitly requested
+      - never infer IAW from occupation, ethnicity, clothes, class, age, or physical condition
+
+  - id: reject-group
+    input_class:
+      subject_count: 2
+    expected_behavior:
+      - reject from this single-person Skill
+
+  - id: reject-fashion-intent
+    request_class:
+      practice: fashion
+    expected_behavior:
+      - explain that fashion editorial is outside Corpus V1
+
+  - id: preserve-clothing-and-social-identity
+    input_class:
+      subject_count: 1
+      framing_scale: waist_up
+      image_structure: single_frame
+    expected_behavior:
+      - preserve visible clothing, accessories, and pose-defining held objects
+      - do not add work grime, cowboy styling, insects, uniforms, or period costume from corpus examples
+      - apply photographic treatment without inventing a new occupation or biography
+
+  - id: reject-multi-panel
+    input_class:
+      subject_count: 1
+      image_structure: diptych
+    expected_behavior:
+      - explain that repeated-person multi-panel compositions are outside the single-frame V1 evidence
+      - do not treat the divider as a supported face-fragment crop
