@@ -4,11 +4,13 @@ Use this file only when the input has no exact supported route. The Skill should
 
 ## Execution modes
 
-Choose in this order:
+Choose the target before choosing the label:
 
-1. `exact_route`: the input key exactly matches a supported key.
-2. `crop_fallback`: an inward crop reaches a supported key without changing head view, face visibility, visible facial geometry, expression, or identity.
-3. `treatment_only`: no safe crop reaches an exact route inside the selected subset; an identity-safe inward crop is still allowed, followed by only the transferable photographic treatment.
+1. If the input key exactly matches a supported key, use `exact_route`.
+2. Otherwise choose the safe target that removes the least identity-bearing information and still creates an intentional formal portrait.
+3. If that chosen target is an exact supported key, use `crop_fallback`; otherwise use `treatment_only` with the transferable photographic treatment.
+
+Never delete additional face, gesture, hands, clothing, or body information solely to convert `treatment_only` into `crop_fallback`.
 
 Track the mode internally. In ordinary delivery, do not add a disclaimer that the result is “not Avedon” and do not ask the user to understand corpus terminology. Do not claim an exact route name unless `execution_mode=exact_route` or the target of `crop_fallback` actually matches that key.
 
@@ -35,13 +37,13 @@ Never do automatically:
 
 ## Target selection
 
-Choose the target that removes the least information while satisfying identity constraints.
+Choose the target that removes the least identity-bearing information while satisfying the explicit matrix below. The matrix overrides any generic preference for a supported key.
 
 | Input | Default result |
 | --- | --- |
 | general frontal full-body, full face | crop to `formal_portrait_general|three_quarter_body|frontal|full|leg_or_foot`; use `treatment_only`, keep the lower edge at thigh level, and preserve the visible face, pose, hands, clothing, and objects |
 | explicitly requested or referenced IAW frontal full-body, full face | crop to `IAW-3Q-FRONT-FULL-LEG`; use `crop_fallback` and keep the lower edge at thigh level |
-| frontal three-quarter body with an unsupported lower crop | crop to the closest supported waist-up key when this removes less identity-bearing information than any other target |
+| frontal three-quarter body with an unsupported lower crop | retain the three-quarter scale and use `treatment_only` when tightening to waist-up would remove more pose, hand, clothing, or object information; crop to waist-up only when the source already supports that smaller intentional composition with less loss |
 | side, profile, over-shoulder, or back full-body | crop to three-quarter body in the same orientation; use `treatment_only` unless the resulting complete key is supported |
 | face fragment or partial face | keep the same facial region outside the frame; use `treatment_only` |
 | unsupported tight head, head-and-shoulders, bust, or crop combination | keep its current head view and face visibility; use `treatment_only`, optionally with a small non-structural trim |

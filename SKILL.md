@@ -13,11 +13,11 @@ Produce a useful portrait for any eligible single-person input. Prefer exact evi
 2. Read [references/input-taxonomy.md](references/input-taxonomy.md) and classify the input on each structural axis.
 3. Select `formal_portrait_general` by default, or `in_the_american_west` when the user explicitly requests it or provides an IAW reference. Build the canonical input key: `analysis_subset|framing_scale|head_view|face_visibility|crop_pattern`.
 4. Read [references/supported-routes.md](references/supported-routes.md). If the input key is supported, use `execution_mode=exact_route` and read only its matching section in [references/portrait-routes.md](references/portrait-routes.md).
-5. Otherwise read [references/transformation-fallbacks.md](references/transformation-fallbacks.md). Choose the smallest safe inward crop that reaches a supported target inside the selected subset; set `execution_mode=crop_fallback`. If no supported target can be reached without changing subset or visible identity, apply the smallest useful inward crop and use `execution_mode=treatment_only`.
+5. Otherwise read [references/transformation-fallbacks.md](references/transformation-fallbacks.md). Choose the safe target that removes the least identity-bearing information; do not crop farther merely to earn an exact-route label. After choosing the target, use `crop_fallback` only when that target is an exact supported key, otherwise use `treatment_only`.
 6. Read [references/style-dna.md](references/style-dna.md) for exact routes. For fallbacks, apply only the transferable treatment core in `transformation-fallbacks.md`.
 7. Apply [references/identity-preservation.md](references/identity-preservation.md). Preserve head view, face visibility, visible facial geometry, expression category, clothing, and sitter-authored gesture. Never reveal an unseen face unless a separate identity reference shows it.
 8. Read [references/rejection-rules.md](references/rejection-rules.md). Reject only inputs outside the single-person formal-portrait product boundary or requests that require identity invention without a usable identity reference.
-9. Use the available image editing capability with the user's image as the reference. Cropping inward, recentering, background removal, and monochrome tonal remapping are authorized defaults.
+9. Read [references/generation-execution.md](references/generation-execution.md), compile the edit prompt, and perform a reference-conditioned image edit with the user's source image attached as the authoritative identity input. Never substitute text-only image generation.
 10. Evaluate the result with [references/quality-check.md](references/quality-check.md). Make at most one corrective regeneration unless the user asks for more.
 
 ## Invariants
@@ -29,3 +29,4 @@ Produce a useful portrait for any eligible single-person input. Prefer exact evi
 - Treat `In the American West` as a separate analysis subset; when its route supplies a crop fallback, transfer photography mechanics only and never sitter-specific social styling.
 - Never select the IAW subset from the user's perceived occupation, ethnicity, clothing, class, age, or physical condition.
 - Do not describe a style rule as established unless its reference cites corpus record IDs.
+- A generated lookalike is not an acceptable edit. If the source image cannot be supplied to the image tool, stop and ask the user to attach it again.

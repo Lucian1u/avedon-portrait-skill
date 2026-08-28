@@ -69,7 +69,7 @@ Do not promote museum prose alone into a complete generation rule. Use instituti
 - supporting_records: general `AP-PIL-MUS-03`, `AP-EXP-FND-08`, `AP-EXP-MUS-07`; IAW `AP-PIL-CAR-01`, `AP-PIL-CAR-03`, `AP-PIL-CAR-06`, `AP-PIL-CAR-09`.
 - contradicting_records: none among resolved supported-route observations; unresolved fields are not counted as confirmation.
 - confidence: high for general, medium for IAW.
-- operational_instruction: use broad frontal light, soft-to-medium facial shadows, and medium-to-high tonal contrast; retain pores, wrinkles, garment texture, and deep blacks without clipping the face.
+- operational_instruction: for the general supported route, use broad frontal soft light. For IAW, treat broad descriptive soft-to-medium light as a medium-confidence series-level tonal guide: preserve the source face planes and do not invent a precise key position, hard directional shadow, or theatrical relighting. Retain pores, wrinkles, garment texture, and deep blacks without clipping the face.
 
 ## Print-edge note
 

@@ -1,4 +1,14 @@
 cases:
+  - id: require-reference-conditioned-edit
+    input_class:
+      subject_count: 1
+      image_attached: true
+    expected_behavior:
+      - pass the user's source image to an image editing capability as the authoritative edit target
+      - choose edit rather than text-only generation when the tool exposes that distinction
+      - request high input fidelity when the tool supports it
+      - stop and request reattachment if the image cannot be supplied to the tool
+
   - id: preserve-face-fragment
     input_class:
       framing_scale: face_detail
@@ -46,6 +56,7 @@ cases:
       - crop at thigh level so feet leave the frame
       - preserve the face, head view, expression, visible hands, clothing, pose, and existing objects
       - do not switch into IAW merely to obtain an exact route
+      - do not tighten to waist-up merely to obtain GEN-WAIST-FRONT-FULL-NONE
 
   - id: crop-side-full-body
     input_class:
@@ -84,6 +95,8 @@ cases:
       - never copy worker grime, cowboy styling, bees, uniforms, or period props
 
   - id: supported-iaw-three-quarter-leg-crop
+    request_class:
+      analysis_subset: in_the_american_west
     input_class:
       framing_scale: three_quarter_body
       head_view: frontal
@@ -94,6 +107,18 @@ cases:
       - keep the thigh-level lower crop and feet outside the frame
       - preserve pose, visible hands, clothing, and any existing held object
       - never widen to full body or tighten to waist-up
+      - treat structure as high-confidence but light direction and hardness as medium-confidence series-level guidance
+      - do not invent a precise key-light direction or theatrical shadow pattern
+
+  - id: correction-restarts-from-source
+    initial_result:
+      hard_failure: visible_identity_drift
+    expected_behavior:
+      - name the failed source-grounded check
+      - perform at most one corrective edit
+      - use the original source as the authoritative edit target
+      - use the failed result only as a diagnostic reference when the tool supports multiple images
+      - never recursively edit the failed result as the sole identity source
 
   - id: reject-secondary-background-person
     input_class:

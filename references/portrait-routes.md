@@ -10,6 +10,8 @@ Each supported route must include:
 route_key:
 status:
 analysis_subset:
+structural_confidence:
+lighting_confidence:
 supporting_records:
 framing_and_crop:
 subject_placement:
@@ -27,6 +29,8 @@ known_variation:
 
 - status: `supported`
 - analysis_subset: `formal_portrait_general`
+- structural_confidence: `high`
+- lighting_confidence: `high`
 - supporting_records: `AP-PIL-MUS-03`, `AP-PIL-MUS-04`, `AP-EXP-FND-04`, `AP-EXP-FND-08`, `AP-EXP-FND-10`, `AP-EXP-FND-12`, `AP-EXP-FND-15`, `AP-EXP-FND-17`, `AP-EXP-MUS-01`, `AP-EXP-MUS-03`, `AP-EXP-MUS-04`, `AP-EXP-MUS-07`, `AP-EXP-MUS-08`, `AP-EXP-MUS-09`, `AP-EXP-MUS-10`
 - framing_and_crop: retain waist-up scale and keep face, head, hands, and lower frame regions visible or hidden exactly as the input class dictates; no face/head/limb crop.
 - subject_placement: centered, balanced side space; portrait orientation preferred, square allowed if inherited from the input.
@@ -43,6 +47,8 @@ known_variation:
 
 - status: `supported`
 - analysis_subset: `in_the_american_west`
+- structural_confidence: `high`
+- lighting_confidence: `medium`; broad series-level treatment, not a precise key-light claim
 - supporting_records: `AP-PIL-CAR-03`, `AP-PIL-CAR-06`, `AP-PIL-CAR-07`, `AP-PIL-CAR-10`, `AP-EXP-CAR-07`, `AP-EXP-CAR-14`, `AP-EXP-CAR-32`
 - framing_and_crop: retain waist-up scale, full face, frontal head, and no structural crop. Do not expose hands that begin outside the frame.
 - subject_placement: centered in a portrait frame with balanced side space.
@@ -59,6 +65,8 @@ known_variation:
 
 - status: `supported`
 - analysis_subset: `in_the_american_west`
+- structural_confidence: `high`
+- lighting_confidence: `medium`; all 12 exact-key expanded records have unresolved direction and hardness, so use series-level evidence only
 - supporting_records: `AP-EXP-CAR-01`, `AP-EXP-CAR-02`, `AP-EXP-CAR-06`, `AP-EXP-CAR-11`, `AP-EXP-CAR-12`, `AP-EXP-CAR-13`, `AP-EXP-CAR-16`, `AP-EXP-CAR-17`, `AP-EXP-CAR-20`, `AP-EXP-CAR-23`, `AP-EXP-CAR-27`, `AP-EXP-CAR-28`
 - framing_and_crop: show head through upper or mid-thigh; keep feet/lower legs outside the frame. Never widen to full body or tighten to waist-up.
 - subject_placement: centered portrait frame with balanced side space.

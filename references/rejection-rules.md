@@ -20,8 +20,8 @@ Ask for another identity reference only when the requested result must expose fa
 
 Do not stop merely because an exact route is `provisional` or `unsupported`.
 
-1. Try `crop_fallback` to the nearest supported target.
-2. If no identity-safe target exists, use `treatment_only` on the current structure.
+1. Choose the same-subset safe target that removes the least identity-bearing information, using the explicit fallback matrix when it covers the input.
+2. After the target is fixed, use `crop_fallback` only if its complete key is supported; otherwise use `treatment_only`.
 3. Keep evidence status internal during ordinary delivery; do not tell the user that the result is “not Avedon.”
 4. If the user explicitly asks about research support, answer accurately and distinguish the exact route from the fallback treatment.
 

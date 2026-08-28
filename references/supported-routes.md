@@ -13,7 +13,7 @@ The three keys below are the exact corpus-supported routes. They are also valid 
 
 General formal portrait is the default subset. Never choose `In the American West` from the person's occupation, clothing, ethnicity, apparent social class, or physical condition. Use the IAW waist-up route only when the user explicitly requests that subset or provides an IAW reference.
 
-For unsupported inputs, read `transformation-fallbacks.md`. Prefer the smallest inward crop that reaches a supported key inside the already selected subset without changing head view, face visibility, visible facial geometry, expression, or identity. Do not switch a general request into IAW merely to obtain an exact target. When no same-subset exact target exists, keep the selected subset and use `treatment_only` after the safe crop.
+For unsupported inputs, read `transformation-fallbacks.md`. First choose the same-subset target that removes the least identity-bearing information while preserving head view, face visibility, visible facial geometry, expression, and identity. Only then label the mode: use `crop_fallback` when that chosen target is an exact supported key and `treatment_only` otherwise. Never tighten a crop farther merely to obtain a supported label, and never switch a general request into IAW to obtain one.
 
 Keep `exact_route`, `crop_fallback`, and `treatment_only` distinct internally. Ordinary output does not need to explain these corpus labels to the user.
 
@@ -40,6 +40,18 @@ Keep `exact_route`, `crop_fallback`, and `treatment_only` distinct internally. O
 | over shoulder | `unsupported` | `unsupported` |
 | back view | `unsupported` | `unsupported` |
 | occluded or non-visible face | `unsupported` | `unsupported` |
+
+## Dimension-specific confidence
+
+`supported` describes the complete structural key, not equal certainty for every photographic variable.
+
+| Route | Structure | Background and tone | Light direction and hardness |
+| --- | --- | --- | --- |
+| `GEN-WAIST-FRONT-FULL-NONE` | high | high | high |
+| `IAW-WAIST-FRONT-FULL-NONE` | high | high | medium |
+| `IAW-3Q-FRONT-FULL-LEG` | high | high | medium, series-level inference only |
+
+For either IAW route, do not invent a precise key position or theatrical shadow pattern. Preserve the source face planes and use broad descriptive tonal mapping.
 
 ## Promotion evidence
 

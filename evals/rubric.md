@@ -16,6 +16,10 @@ A result fails immediately when:
 - visible identity changes materially;
 - clothing, accessories, held objects, or social identity are replaced by corpus-specific sitter styling;
 - the result leaves the controlled-background formal-portrait domain.
+- the image tool did not receive the source image as an edit target;
+- the result is a text-generated lookalike rather than a source-conditioned edit;
+- visible hands, clothing, accessories, objects, or face structure drift outside the declared crop;
+- a general full-body input is tightened to waist-up merely to obtain an exact supported label;
 
 ## Scores
 
@@ -63,9 +67,17 @@ Score only evidence-backed shared rules. Do not reward unsupported mythology abo
 
 Check anatomy, duplicate features, hands, clothing continuity, edge artifacts, unintended text, halos, background seams, and tonal damage.
 
+### Source-conditioning integrity
+
+- `4`: the supplied source is visibly authoritative for identity, pose, expression, clothing, hands, and all retained structure.
+- `3`: clearly source-derived, with only minor non-identity texture drift.
+- `2`: recognizable but one protected source attribute changed materially.
+- `1`: resembles the source description more than the actual source image.
+- `0`: text-only lookalike or different sitter.
+
 ## Pass rule
 
 - no hard-gate failure;
-- `structure_preservation = 4` and `transformation_integrity = 4`;
+- `structure_preservation = 4`, `transformation_integrity = 4`, and `source_conditioning_integrity = 4`;
 - every other applicable dimension at least `3`;
 - route and shared-style scores cite the evidence rules used.

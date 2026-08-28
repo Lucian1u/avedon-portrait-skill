@@ -51,7 +51,7 @@
 
 ## V1 completion
 
-- authoritative candidates: 214;
+- authoritative candidates: 216;
 - visually reviewed annotations: 85;
 - `formal_portrait_general`: 43;
 - `in_the_american_west`: 42;

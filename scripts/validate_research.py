@@ -183,6 +183,11 @@ def main():
     if missing_pilot_ids := sorted(pilot_ids - corpus_ids):
         errors.append(f"annotated-corpus.csv: missing pilot IDs {missing_pilot_ids}")
 
+    pool_urls = {row["source_url"].strip() for row in pool_rows}
+    corpus_urls = {row["source_url"].strip() for row in corpus_rows}
+    if missing_corpus_urls := sorted(corpus_urls - pool_urls):
+        errors.append(f"reference-pool.csv: missing annotated source URLs {missing_corpus_urls}")
+
     route_eligible = [
         row
         for row in corpus_rows
@@ -201,9 +206,22 @@ def main():
         if missing_ids := sorted(cited_ids - corpus_ids):
             errors.append(f"{path.name}: unknown corpus IDs {missing_ids}")
 
-    image_files = [path for path in ROOT.rglob("*") if path.is_file() and path.suffix.lower() in IMAGE_SUFFIXES]
-    if image_files:
-        errors.append("copyright boundary: image files found: " + ", ".join(str(path.relative_to(ROOT)) for path in image_files))
+    image_files = [
+        path
+        for path in ROOT.rglob("*")
+        if path.is_file()
+        and path.suffix.lower() in IMAGE_SUFFIXES
+        and "release" not in path.relative_to(ROOT).parts
+    ]
+    visual_eval_root = ROOT / "evals" / "visual"
+    disallowed_images = [path for path in image_files if visual_eval_root not in path.parents]
+    if disallowed_images:
+        errors.append(
+            "copyright boundary: image files outside evals/visual: "
+            + ", ".join(str(path.relative_to(ROOT)) for path in disallowed_images)
+        )
+    if image_files and not (visual_eval_root / "manifest.md").is_file():
+        errors.append("evals/visual: image fixtures require manifest.md")
 
     domains = Counter(urlparse(row["source_url"]).netloc.lower() for row in pool_rows if row.get("source_url"))
     print(f"reference pool rows: {len(pool_rows)}")

@@ -6,7 +6,7 @@
 
 | Evidence stage | Count | Meaning |
 | --- | ---: | --- |
-| authoritative candidates | 214 | 权威来源目录；未看图的候选不能支持风格结论 |
+| authoritative candidates | 216 | 权威来源目录；未看图的候选不能支持风格结论 |
 | pilot annotations | 20 | 用于修订 schema 的分层试标 |
 | visually reviewed annotations | 85 | 实际打开权威来源图像并完成 55 字段标注 |
 | V1 scope-eligible | 83 | `v1_candidate=true` 且为单帧 |
@@ -53,7 +53,7 @@ analysis_subset|framing_scale|head_view|face_visibility|crop_pattern
 - General bust + frontal + full + no crop has 2 (`AP-EXP-FND-02`, `AP-EXP-MUS-06`): `provisional`.
 - General tight head + frontal + full + no crop has 7 (`AP-EXP-FND-05`, `AP-EXP-MUS-05`, `AP-EXP-MUS-17`, `AP-EXP-MUS-18`, `AP-EXP-GET-01`, `AP-EXP-GET-02`, `AP-EXP-GET-03`): `provisional`. 数量门槛已达到，但只有 2 条属于 1969 年后的成熟方法期，且背景与光线存在明显时期差异，尚不能写成稳定的成熟期操作规则。
 - No route-eligible record supports `face_detail`, `full_body`, `back`, or `over_shoulder`: `unsupported`.
-- One general strict-profile annotation and additional targeted institutional leads exist, but the exact route has only one route-eligible record: `unsupported` in V1 runtime.
+- The corpus contains one strict-profile annotation (`AP-EXP-FND-18`), but it is `v1_candidate=review` and `needs_review=true`; the route-eligible strict-profile count is 0. Additional institutional leads remain unpromoted: `unsupported` in V1 runtime.
 
 The absence of a promoted route remains an evidence result. Runtime may still use an identity-safe inward crop or treatment-only fallback, but it must not relabel that fallback as an exact corpus route.
 

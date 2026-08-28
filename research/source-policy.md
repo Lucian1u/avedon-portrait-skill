@@ -21,6 +21,7 @@
 - 正式系列名（若有）
 - 结构化视觉观察
 - 标注置信度和复核状态
+- `evals/visual/` 下明确标注为 AI 合成、仅用于回归测试的非 Avedon 输入与输出夹具
 
 ## What the repository never stores
 
@@ -31,6 +32,8 @@
 - 未经授权的训练素材包
 
 URL 只用于人工查看和审计，不代表仓库取得图片再分发权。
+
+合成视觉夹具必须有 manifest，记录生成用途、非真实人物声明和对应测试用例；不得混入 `research/`、`references/` 或 Avedon corpus。
 
 ## Pool and pilot
 

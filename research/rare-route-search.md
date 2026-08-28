@@ -31,7 +31,7 @@ The focused expansion found zero eligible records with head through both feet in
 | Marella Agnelli, 1953 | [Avedon Foundation](https://www.avedonfoundation.org/the-work) | bust, near profile toward image right | eligible pre-mature evidence |
 | Marella Agnelli in Profile | [Smithsonian NMAH](https://americanhistory.si.edu/collections/object/nmah_557143) | strict profile toward image right, controlled gray background | review; exact date not shown on page |
 
-These records justified continued profile annotation but did not reach the V1 promotion gate. The completed corpus contains only one route-eligible strict-profile record.
+These records justified continued profile annotation but did not reach the V1 promotion gate. The only strict-profile corpus annotation is `AP-EXP-FND-18`, which remains `v1_candidate=review` and `needs_review=true` because of its hair/fashion boundary. The route-eligible strict-profile count is therefore 0.
 
 ## Over-shoulder and back view
 
