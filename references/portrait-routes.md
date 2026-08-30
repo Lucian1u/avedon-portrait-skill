@@ -32,11 +32,11 @@ known_variation:
 - structural_confidence: `high`
 - lighting_confidence: `high`
 - supporting_records: `AP-PIL-MUS-03`, `AP-PIL-MUS-04`, `AP-EXP-FND-04`, `AP-EXP-FND-08`, `AP-EXP-FND-10`, `AP-EXP-FND-12`, `AP-EXP-FND-15`, `AP-EXP-FND-17`, `AP-EXP-MUS-01`, `AP-EXP-MUS-03`, `AP-EXP-MUS-04`, `AP-EXP-MUS-07`, `AP-EXP-MUS-08`, `AP-EXP-MUS-09`, `AP-EXP-MUS-10`
-- framing_and_crop: retain waist-up scale and keep face, head, hands, and lower frame regions visible or hidden exactly as the input class dictates; no face/head/limb crop.
-- subject_placement: centered, balanced side space; portrait orientation preferred, square allowed if inherited from the input.
+- framing_and_crop: retain waist-up scale and keep face, head, hands, and lower frame regions visible or hidden exactly as the input class dictates; no face/head/limb crop. Side or top trimming may repair dead space without changing the key.
+- subject_placement: centered, balanced side space; use `crop_recenter` or background-only extension when the source is accidentally offset. Portrait orientation preferred, square allowed if inherited from the input.
 - background: continuous white is the dominant observation (14/15); continuous mid-gray is a supported variation (`AP-EXP-FND-04`). No backdrop edge or environment.
 - light_and_tone: neutral black-and-white; broad frontal soft light; medium or high contrast; preserve highlight and deep-black detail.
-- gaze_and_expression: retain direct gaze and the user's mouth state. Closed-neutral dominates, but supported smiles exist (`AP-PIL-MUS-04`, `AP-EXP-MUS-03`).
+- gaze_and_expression: preserve the input's gaze direction, eyelid state, mouth state, and expression. Direct gaze is common in the route evidence, but it is not permission to redirect an off-camera gaze. Closed-neutral dominates, while supported smiles exist (`AP-PIL-MUS-04`, `AP-EXP-MUS-03`).
 - hands_and_posture: keep the input's visible-hand count and relation. Evidence includes both hands, partial hands, and no hands; both open and closed postures are valid.
 - identity_constraints: preserve face, age, skin, hair, clothing, eyewear, jewelry, and existing held objects.
 - negative_constraints: no hard side-light drama, beauty retouch, invented props, occupational restyling, or print border unless requested.
@@ -50,11 +50,11 @@ known_variation:
 - structural_confidence: `high`
 - lighting_confidence: `medium`; broad series-level treatment, not a precise key-light claim
 - supporting_records: `AP-PIL-CAR-03`, `AP-PIL-CAR-06`, `AP-PIL-CAR-07`, `AP-PIL-CAR-10`, `AP-EXP-CAR-07`, `AP-EXP-CAR-14`, `AP-EXP-CAR-32`
-- framing_and_crop: retain waist-up scale, full face, frontal head, and no structural crop. Do not expose hands that begin outside the frame.
-- subject_placement: centered in a portrait frame with balanced side space.
+- framing_and_crop: retain waist-up scale, full face, frontal head, and no structural crop. Side or top trimming may repair dead space. Do not expose hands that begin outside the frame.
+- subject_placement: centered in a portrait frame with balanced side space; use background-only extension rather than cutting protected sitter content.
 - background: featureless seamless white; no floor line, environment, or invented contextual cue.
 - light_and_tone: neutral black-and-white, broad frontal soft-to-medium light, medium-to-high contrast. The exact Carter-source light field is unresolved in 3/7 supporting records, so do not add directional theatricality.
-- gaze_and_expression: preserve direct gaze, mouth state, and intensity; closed neutral and parted lips are both evidenced.
+- gaze_and_expression: preserve the input's gaze direction, eyelid state, mouth state, and intensity. Direct gaze is common in the route evidence, but do not redirect the eyes; closed neutral and parted lips are both evidenced.
 - hands_and_posture: hands may be absent, single, or both. Preserve the input's relation to clothing, body, or existing object.
 - identity_constraints: use IAW only for photographic treatment. Never add worker grime, cowboy styling, bees, nudity, a uniform, scars, tools, or historic dress from the supporting sitters.
 - negative_constraints: no environmental West, documentary location, fictional occupation, or stereotype; no automatic black print border.
@@ -69,7 +69,7 @@ known_variation:
 - lighting_confidence: `medium`; all 12 exact-key expanded records have unresolved direction and hardness, so use series-level evidence only
 - supporting_records: `AP-EXP-CAR-01`, `AP-EXP-CAR-02`, `AP-EXP-CAR-06`, `AP-EXP-CAR-11`, `AP-EXP-CAR-12`, `AP-EXP-CAR-13`, `AP-EXP-CAR-16`, `AP-EXP-CAR-17`, `AP-EXP-CAR-20`, `AP-EXP-CAR-23`, `AP-EXP-CAR-27`, `AP-EXP-CAR-28`
 - framing_and_crop: show head through upper or mid-thigh; keep feet/lower legs outside the frame. Never widen to full body or tighten to waist-up.
-- subject_placement: centered portrait frame with balanced side space.
+- subject_placement: centered portrait frame with balanced side space; repair accidental offset independently of the thigh-level crop.
 - background: featureless seamless white, no floor line and no environmental context.
 - light_and_tone: neutral black-and-white and medium-to-high contrast. Use the series-level broad frontal soft-to-medium light supported by `AP-PIL-CAR-01`, `AP-PIL-CAR-02`, `AP-PIL-CAR-04`, `AP-PIL-CAR-05`, `AP-PIL-CAR-09`; the expanded source images do not justify a more specific lighting claim.
 - gaze_and_expression: preserve the input. Direct gaze/closed neutral is common, while closed eyes/open expression is supported by `AP-EXP-CAR-28`.

@@ -81,6 +81,90 @@ cases:
       - preserve expression, hands, clothing, accessories, and existing objects
       - apply a controlled seamless background and evidence-backed monochrome treatment
 
+  - id: repair-accidental-left-offset-waist-up
+    input_class:
+      framing_scale: waist_up
+      head_view: frontal
+      face_visibility: full
+      crop_pattern: none
+      subject_placement: image_left
+      negative_space_bias: image_right
+      gaze_direction: camera
+      gesture_direction: none
+      headroom: excessive
+    expected_behavior:
+      - classify composition_intent as accidental_imbalance rather than treating the offset as protected structure
+      - keep the supported waist-up structural key while declaring a separate composition action
+      - crop surplus right and top space to recenter the sitter when all protected edges remain inside the crop
+      - use background_extend_recenter on the cramped left side if crop-only recentering would cut hair, face, hand, clothing, or a pose-defining object
+      - produce balanced side space and modest headroom without changing identity, gaze, expression, pose, or clothing
+      - do not let treatment_only or exact_route labels suppress composition repair
+
+  - id: preserve-purposeful-asymmetry
+    input_class:
+      framing_scale: bust
+      head_view: three_quarter_facing_image_right
+      face_visibility: full
+      subject_placement: image_left
+      negative_space_bias: image_right
+      gaze_direction: image_right
+      gesture_direction: image_right
+    expected_behavior:
+      - classify composition_intent as purposeful_asymmetry
+      - preserve useful gaze and gesture room instead of mechanically centering the sitter
+      - remove only surplus space that remains purposeless after background simplification
+      - preserve gaze direction, face view, expression, and edge relationships
+
+  - id: background-only-extension-for-cramped-sitter
+    input_class:
+      framing_scale: waist_up
+      head_view: frontal
+      face_visibility: full
+      subject_placement: image_left
+      left_subject_edge: touches_safe_margin
+      right_negative_space: excessive
+    expected_behavior:
+      - reject an inward crop that would graze protected hair, shoulder, hand, or clothing
+      - extend featureless controlled background on the cramped side and rebalance the opposite side
+      - generate no new hair, face, skin, hand, clothing, or body pixels outside the source subject boundary
+      - keep the sitter recognizably source-derived
+
+  - id: avoid-joint-and-edge-tangencies
+    input_class:
+      framing_scale: full_body
+      head_view: frontal
+      face_visibility: full
+      visible_hands: both
+    expected_behavior:
+      - declare the lower crop at upper-to-mid thigh rather than through the knees
+      - avoid cuts through wrists, elbows, knees, or ankles
+      - avoid grazing hair, chin, fingers, elbows, clothing, or held objects at the frame edge
+      - either retain a protected feature with breathing room or exclude its larger region through a deliberate crop
+
+  - id: repair-flat-tone-without-clipping
+    input_class:
+      framing_scale: waist_up
+      head_view: frontal
+      face_visibility: full
+      tone_defects: flat muddy_midtones subject_background_merge
+      pale_hair_or_clothing: true
+    expected_behavior:
+      - establish distinct black, white, and midtone anchors without crushing identity-bearing shadows
+      - keep skin, eyes, lips, hair, hands, and clothing tonally distinguishable
+      - use light gray or natural edge separation when pure white would merge pale sitter details into the background
+      - avoid outline halos, invented rim light, waxy skin, HDR clarity, and highlight clipping
+
+  - id: do-not-invent-detail-from-poor-capture
+    input_class:
+      framing_scale: head_and_shoulders
+      face_visibility: full
+      capture_limits: low_resolution motion_blur glare_occlusion
+    expected_behavior:
+      - preserve only visible facial and eyewear evidence
+      - never invent an eye behind opaque glare or fabricate eyelashes, pores, teeth, jewelry, or fabric detail
+      - improve tonal legibility without claiming recovered source detail
+      - report the remaining capture limitation when it materially limits the result
+
   - id: supported-iaw-waist-up-explicit
     request_class:
       analysis_subset: in_the_american_west

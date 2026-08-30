@@ -15,7 +15,9 @@ PILOT = ROOT / "research" / "pilot-corpus.csv"
 CORPUS = ROOT / "research" / "annotated-corpus.csv"
 CITATION_FILES = (
     ROOT / "research" / "corpus-findings.md",
+    ROOT / "research" / "portrait-editing-review.md",
     ROOT / "research" / "v2-framing-search.md",
+    SKILL_ROOT / "references" / "composition-and-tone.md",
     SKILL_ROOT / "references" / "transformation-fallbacks.md",
     SKILL_ROOT / "references" / "style-dna.md",
     SKILL_ROOT / "references" / "portrait-routes.md",

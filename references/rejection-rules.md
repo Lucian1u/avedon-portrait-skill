@@ -12,7 +12,7 @@
 
 ## Authorized default changes
 
-Do not ask before an inward crop, recentering, background removal/replacement, or monochrome tonal remap. These are part of the product behavior. Follow `transformation-fallbacks.md` and preserve head view, face visibility, expression, visible facial geometry, clothing, and identity.
+Do not ask before an inward crop, recentering, featureless background-only canvas extension, background removal/replacement, or monochrome tonal remap. These are part of the product behavior. Follow `composition-and-tone.md` and `transformation-fallbacks.md`; preserve head view, face visibility, gaze, expression, visible facial geometry, clothing, and identity.
 
 Ask for another identity reference only when the requested result must expose facial structure that the input does not show. A back view, profile, or partial face may still be completed without asking if it remains back/profile/partial.
 

@@ -85,4 +85,6 @@ Use torso view, head attitude, and still-versus-dynamic pose as secondary discri
 
 Classify both the input and intended output. Exact routes preserve the complete key. Fallbacks may reduce framing scale through an inward crop and may change the lower crop pattern that results from that crop. They must preserve head view, face visibility, visible facial geometry, expression category, and identity.
 
-The Skill may refine subject scale, headroom, side spacing, background, light, and tone. It may not expand the frame, complete a partial face, expose an unseen face, or rotate a profile/back view toward the camera without an additional identity reference that shows the missing facial structure. Read `transformation-fallbacks.md` for the permitted matrix.
+The route key does not encode whether the photograph is well composed. Classify `composition_intent`, `composition_defects`, `composition_action`, `tone_defects`, and `capture_limits` separately with `composition-and-tone.md`.
+
+The Skill may refine subject scale, headroom, side spacing, background, light, and tone. It may extend featureless background when that avoids cutting protected sitter content. It may not complete a partial face, expose an unseen face, or rotate a profile/back view toward the camera without an additional identity reference that shows the missing facial structure. Read `transformation-fallbacks.md` for the permitted matrix.

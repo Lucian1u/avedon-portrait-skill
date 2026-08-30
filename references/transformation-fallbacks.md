@@ -12,6 +12,10 @@ Choose the target before choosing the label:
 
 Never delete additional face, gesture, hands, clothing, or body information solely to convert `treatment_only` into `crop_fallback`.
 
+`treatment_only` describes route evidence, not the physical scope of the edit. It may still include the composition action declared in `composition-and-tone.md`: a safe inward trim, recentering, scale refinement, or featureless background-only canvas extension. Do not let this label preserve an obvious photographic mistake.
+
+For `crop_fallback`, use the matching route's target framing, placement, background, and tonal checks after the crop is chosen. Do not copy its sitter pose, gaze, gesture, clothing, or social styling; those continue to come from the source.
+
 Track the mode internally. In ordinary delivery, do not add a disclaimer that the result is “not Avedon” and do not ask the user to understand corpus terminology. Do not claim an exact route name unless `execution_mode=exact_route` or the target of `crop_fallback` actually matches that key.
 
 ## Safe transformation rule
@@ -23,6 +27,7 @@ Allowed without asking:
 - crop `full_body` to `three_quarter_body` or `waist_up`;
 - crop `three_quarter_body` to `waist_up`;
 - recenter the sitter and adjust side or top space;
+- extend only featureless background when recentering by crop would cut protected sitter content;
 - remove an environmental background and replace it with a continuous white or light neutral controlled background;
 - convert to neutral black-and-white and remap contrast;
 - preserve an existing side, profile, partial-face, over-shoulder, or back orientation while changing only scale and treatment.
@@ -48,6 +53,8 @@ Choose the target that removes the least identity-bearing information while sati
 | face fragment or partial face | keep the same facial region outside the frame; use `treatment_only` |
 | unsupported tight head, head-and-shoulders, bust, or crop combination | keep its current head view and face visibility; use `treatment_only`, optionally with a small non-structural trim |
 
+Apply the independent composition diagnosis to every row. A structurally exact waist-up input can still need `crop_recenter` or `background_extend_recenter` when the sitter is accidentally crowded against one edge.
+
 Never change the selected subset merely to obtain a supported target. Do not copy IAW clothing, occupation, historical period, dirt, scars, tools, insects, or social cues when IAW is explicitly selected.
 
 ## Transferable treatment core
@@ -57,7 +64,8 @@ These controls come from the repeated behavior of the three supported routes; th
 - background: remove readable location information and use a continuous controlled white or light-neutral background. Evidence: `AP-EXP-MUS-01`, `AP-EXP-MUS-07`, `AP-PIL-CAR-03`, `AP-EXP-CAR-14`, `AP-EXP-CAR-01`, `AP-EXP-CAR-20`.
 - tonality: neutral black-and-white with separation in skin, hair, and clothing. Evidence: `AP-PIL-MUS-03`, `AP-EXP-FND-10`, `AP-PIL-CAR-06`, `AP-EXP-CAR-32`, `AP-EXP-CAR-11`, `AP-EXP-CAR-27`.
 - contrast and texture: medium-to-high printable contrast; retain pores, wrinkles, garment detail, highlights, and deep blacks. Evidence: `AP-EXP-FND-08`, `AP-EXP-MUS-07`, `AP-PIL-CAR-01`, `AP-PIL-CAR-09`.
-- light mapping: for a frontal visible face, broad descriptive light is preferred. For side, profile, partial-face, or back inputs, preserve the input's light direction and visible planes; remap tone without relighting an unseen face plane.
+- tonal separation: establish readable black, white, and midtone anchors without clipping identity-bearing skin, eyes, hair, hands, or clothing; use light gray instead of pure white when the sitter would merge into the background.
+- light mapping: for a frontal visible face, broad descriptive light is preferred. Preserve source shadow topology and visible face planes; rebalance harshness through tone before generative relighting. For side, profile, partial-face, or back inputs, preserve the input's light direction and visible planes; never relight an unseen face plane.
 - expression and gesture: preserve the input. Evidence for valid variation: `AP-PIL-MUS-04`, `AP-EXP-MUS-03`, `AP-PIL-CAR-03`, `AP-EXP-CAR-28`.
 - presentation: a black print border is never automatic.
 
@@ -76,6 +84,10 @@ execution_mode: exact_route | crop_fallback | treatment_only
 input_route_key:
 target_route_key:
 safe_transform:
+composition_intent: purposeful_asymmetry | accidental_imbalance | ambiguous
+output_canvas: preserve_source | portrait | square | user_specified
+composition_actions: <ordered list from keep, crop_recenter, tighten_crop, background_extend_recenter>
+tone_defects:
 facial_identity_assessable: true | false
 unseen_structure_invented: false
 ```

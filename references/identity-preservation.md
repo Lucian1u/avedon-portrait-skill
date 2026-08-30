@@ -59,6 +59,10 @@ Cropping may remove body area but must not reconstruct identity-bearing content.
 
 When a lower crop removes hands or objects, ensure the cut is intentional and anatomically clean; never regenerate a substitute hand or object elsewhere.
 
+Subject placement and empty canvas are not identity-bearing by themselves. The Skill may move the crop window around the unchanged sitter or add seamless background-only canvas to repair imbalance. Background extension must not continue hair, face, skin, clothing, limbs, or held objects beyond their source boundary.
+
+Do not treat missing technical detail as an invitation to reconstruct identity. Missed focus, motion blur, compression, opaque glare, or deep occlusion may limit what can be recovered. Never invent an eye behind opaque glare, new skin texture in a blurred face, or body shape hidden by the frame.
+
 ## Evaluation labels
 
 - `facial_identity_assessable: true|false`

@@ -15,7 +15,7 @@ General formal portrait is the default subset. Never choose `In the American Wes
 
 For unsupported inputs, read `transformation-fallbacks.md`. First choose the same-subset target that removes the least identity-bearing information while preserving head view, face visibility, visible facial geometry, expression, and identity. Only then label the mode: use `crop_fallback` when that chosen target is an exact supported key and `treatment_only` otherwise. Never tighten a crop farther merely to obtain a supported label, and never switch a general request into IAW to obtain one.
 
-Keep `exact_route`, `crop_fallback`, and `treatment_only` distinct internally. Ordinary output does not need to explain these corpus labels to the user.
+Keep `exact_route`, `crop_fallback`, and `treatment_only` distinct internally. They describe structural evidence, not whether non-identity composition repair is allowed. Ordinary output does not need to explain these corpus labels to the user.
 
 ## Supported exact keys
 

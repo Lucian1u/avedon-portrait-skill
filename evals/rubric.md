@@ -9,6 +9,10 @@ Evaluate observable behavior, not whether generated wording matches a template.
 A result fails immediately when:
 
 - framing changes outside the declared safe inward-crop matrix;
+- an accidental composition defect is diagnosed but remains visibly uncorrected;
+- purposeful negative space or gaze/gesture direction is removed by mechanical centering;
+- a crop cuts directly through a major joint or grazes protected sitter content;
+- background-only extension synthesizes any part of the sitter;
 - an inward crop changes head view, face visibility, expression category, or visible identity;
 - a hidden face or body region is brought into view;
 - the output contains more than one person;
@@ -20,6 +24,8 @@ A result fails immediately when:
 - the result is a text-generated lookalike rather than a source-conditioned edit;
 - visible hands, clothing, accessories, objects, or face structure drift outside the declared crop;
 - a general full-body input is tightened to waist-up merely to obtain an exact supported label;
+- identity-bearing skin, eyes, hair, hands, or clothing clip to featureless white or black;
+- source blur, glare, occlusion, or compression damage is replaced with invented identity detail;
 
 ## Scores
 
@@ -40,6 +46,14 @@ Use 0–4 for each applicable dimension.
 - `2`: unnecessary information is removed or the target crop is weak.
 - `1`: pose, view, or identity-bearing content changes.
 - `0`: unseen face or anatomy is invented.
+
+### Composition integrity
+
+- `4`: the output follows the declared intent and action; accidental imbalance is cleanly repaired, or purposeful asymmetry and directionality remain intact.
+- `3`: the intended balance is clear with one small non-identity edge or spacing weakness.
+- `2`: the result is usable but still visibly crowded, loose, or indecisive.
+- `1`: the edit worsens balance, cuts at a joint, or removes meaningful negative space.
+- `0`: composition repair reconstructs the sitter or exposes unseen structure.
 
 ### Visible identity preservation
 
@@ -63,6 +77,14 @@ Mark `not_assessable` for facial identity when no face is visible; evaluate silh
 
 Score only evidence-backed shared rules. Do not reward unsupported mythology about Avedon.
 
+### Tonal integrity
+
+- `4`: continuous controlled background; readable separation among face, eyes, lips, hair, hands, and clothing; black and white anchors present without identity-bearing clipping.
+- `3`: overall tonal structure passes with one secondary region slightly flat or dense.
+- `2`: several sitter regions merge or one important highlight/shadow region loses detail.
+- `1`: crushed, bleached, muddy, haloed, or waxy treatment dominates.
+- `0`: tonal processing materially changes or obscures identity.
+
 ### Technical integrity
 
 Check anatomy, duplicate features, hands, clothing continuity, edge artifacts, unintended text, halos, background seams, and tonal damage.
@@ -78,6 +100,6 @@ Check anatomy, duplicate features, hands, clothing continuity, edge artifacts, u
 ## Pass rule
 
 - no hard-gate failure;
-- `structure_preservation = 4`, `transformation_integrity = 4`, and `source_conditioning_integrity = 4`;
+- `structure_preservation = 4`, `composition_integrity = 4`, `transformation_integrity = 4`, and `source_conditioning_integrity = 4`;
 - every other applicable dimension at least `3`;
 - route and shared-style scores cite the evidence rules used.

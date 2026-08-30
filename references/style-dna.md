@@ -42,7 +42,7 @@ Do not promote museum prose alone into a complete generation rule. Use instituti
 - supporting_records: `AP-EXP-FND-08`, `AP-EXP-MUS-08`, `AP-PIL-CAR-07`, `AP-EXP-CAR-32`, `AP-EXP-CAR-02`, `AP-EXP-CAR-23`.
 - contradicting_records: `AP-EXP-CAR-28` has eyes closed during an open expression.
 - confidence: high for placement and head view; high with one valid variation for gaze.
-- operational_instruction: preserve the input's already-frontal head and center the subject without changing its crop. Preserve closed eyes if present; do not force eye contact by editing eyelids or gaze.
+- operational_instruction: preserve the input's already-frontal head and use the declared composition plan to center the subject without changing the structural route key. Side trimming, headroom repair, or background-only extension may correct accidental placement. Preserve closed eyes if present; do not force eye contact by editing eyelids or gaze.
 
 ## 4. Expression is observed, not standardized into severity
 
@@ -69,7 +69,7 @@ Do not promote museum prose alone into a complete generation rule. Use instituti
 - supporting_records: general `AP-PIL-MUS-03`, `AP-EXP-FND-08`, `AP-EXP-MUS-07`; IAW `AP-PIL-CAR-01`, `AP-PIL-CAR-03`, `AP-PIL-CAR-06`, `AP-PIL-CAR-09`.
 - contradicting_records: none among resolved supported-route observations; unresolved fields are not counted as confirmation.
 - confidence: high for general, medium for IAW.
-- operational_instruction: for the general supported route, use broad frontal soft light. For IAW, treat broad descriptive soft-to-medium light as a medium-confidence series-level tonal guide: preserve the source face planes and do not invent a precise key position, hard directional shadow, or theatrical relighting. Retain pores, wrinkles, garment texture, and deep blacks without clipping the face.
+- operational_instruction: for the general supported route, use broad frontal soft light while preserving the source shadow topology. For IAW, treat broad descriptive soft-to-medium light as a medium-confidence series-level tonal guide: preserve the source face planes and do not invent a precise key position, hard directional shadow, theatrical relighting, or new catchlights. Retain pores, wrinkles, garment texture, and black anchors without clipping identity-bearing face, hair, hands, or clothing detail.
 
 ## Print-edge note
 
